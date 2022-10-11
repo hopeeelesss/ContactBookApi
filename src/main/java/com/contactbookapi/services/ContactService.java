@@ -24,4 +24,8 @@ public class ContactService {
         MultiValueMap<Long, Contact> list = new LinkedMultiValueMap<>(data);
         return new ResponseEntity(list, HttpStatus.OK);
     }
+
+    public void addContact(Contact contact){
+        contactRepository.save(contact);
+    }
 }

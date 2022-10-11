@@ -1,6 +1,7 @@
 package com.contactbookapi.models;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -9,6 +10,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "ContactBook")
 @Data
+@NoArgsConstructor
 public class Contact {
     @Id
     private Long id;
@@ -17,5 +19,11 @@ public class Contact {
 
     private String name;
 
-    private String surname;
+    private String surname = null;
+
+    public Contact(String phone, String name, String surname) {
+        this.phone = phone;
+        this.name = name;
+        this.surname = surname;
+    }
 }

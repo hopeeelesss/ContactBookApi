@@ -1,5 +1,6 @@
 package com.contactbookapi.controllers;
 
+import com.contactbookapi.models.Contact;
 import com.contactbookapi.services.ContactService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +22,7 @@ public class ContactController {
     public void newContact(@RequestParam("phone") String phone,
                            @RequestParam("name") String name,
                            @RequestParam(value = "surname", required = false) String surname){
-
+        contactService.addContact(new Contact(phone, name, surname));
     }
 
     @DeleteMapping("/contact/delete")
