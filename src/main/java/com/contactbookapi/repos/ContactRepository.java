@@ -6,4 +6,9 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ContactRepository extends JpaRepository<Contact, Long> {
+    Contact findContactById(Long Id);
+
+    Contact findContactByName(String name);
+
+    void deleteByName(String name);
 }

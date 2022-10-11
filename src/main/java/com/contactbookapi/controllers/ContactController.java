@@ -27,24 +27,24 @@ public class ContactController {
 
     @DeleteMapping("/contact/delete")
     public void deleteContacts(){
-
+        contactService.deleteAllContacts();
     }
 
     @GetMapping("/contact/{name}/get")
-    public void getContact(@PathVariable("name") String name){
-
+    public ResponseEntity<Contact> getContact(@PathVariable("name") String name){
+        return contactService.getContact(contactService.findByName(name));
     }
 
     @DeleteMapping("/contact/{name}/delete")
     public void deleteContact(@PathVariable("name") String name){
-
+        contactService.deleteByName(name);
     }
 
     @PutMapping("/contact/{name}/update")
     public void updateContact(@PathVariable("name") String oldName,
                               @RequestParam("phone") String phone,
-                              @RequestParam("name") String newName,
+                              @RequestParam("newname") String newName,
                               @RequestParam(value = "surname", required = false) String surname){
-
+        contactService.updateContact(oldName, new Contact(phone, newName, surname));
     }
 }
