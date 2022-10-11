@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>Поиск Контакта</title>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+<h1>Контакт</h1>
+Имя: <span id="Name"></span>
+<br>Фамилия:<span id="Surname"></span>
+<br>Телефон:<span id="Phone"></span>
+</body>
+<script>
+    let settings = {
+        url: "http://localhost:8080/v1/contact/ACAB/get",
+        method: 'GET',
+        timeout: 0,
+    }
+    $.ajax(settings).done(function(response) {
+        console.log(response);
+        $('#Name').append(response.name);
+        $('#Surname').append(response.surname);
+        $('#Phone').append(response.phone);
+    });
+</script>
+</html>

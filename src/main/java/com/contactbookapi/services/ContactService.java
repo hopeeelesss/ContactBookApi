@@ -18,11 +18,12 @@ public class ContactService {
     @Autowired
     private ContactRepository contactRepository;
 
-    public ResponseEntity listContacts(){
-        Map<Long, List<Contact>> data = contactRepository.findAll().stream()
-                .collect(Collectors.groupingBy(Contact::getId));
-        MultiValueMap<Long, Contact> list = new LinkedMultiValueMap<>(data);
-        return new ResponseEntity(list, HttpStatus.OK);
+    public List<Contact> listContacts(){
+//        Map<Long, List<Contact>> data = contactRepository.findAll().stream()
+//                .collect(Collectors.groupingBy(Contact::getId));
+//        MultiValueMap<Long, Contact> list = new LinkedMultiValueMap<>(data);
+//        return new ResponseEntity(list, HttpStatus.OK);
+        return contactRepository.findAll();
     }
 
     public void addContact(Contact contact){

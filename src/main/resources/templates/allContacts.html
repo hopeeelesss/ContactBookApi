@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>Каркас страницы с погодой</title>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+<h1>Контакт</h1>
+temp: <span id="Temp"></span>
+<br>:<span id="Temp_max"></span>
+<br>temp_min:<span id="Temp_min"></span>
+<br>pressure:<span id="Pressure"></span>
+<br>wind_speed:<span id="Wind_speed"></span>
+</body>
+<script>
+    let settings = {
+        url: '/contact/{name}/get',
+        method: 'GET',
+        timeout: 0,
+    }
+    $.ajax(settings).done(function(response) {
+        console.log(response);
+        $('#Temp').append(response.main.temp);
+        $('#Temp_max').append(response.main.temp_max);
+        $('#Temp_min').append(response.main.temp_min);
+        $('#Pressure').append(response.main.pressure);
+        $('#Wind_speed').append(response.wind.speed);
+    });
+</script>
+</html>

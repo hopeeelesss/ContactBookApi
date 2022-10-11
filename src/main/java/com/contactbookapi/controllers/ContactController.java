@@ -7,6 +7,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/v1")
 public class ContactController {
@@ -14,7 +16,8 @@ public class ContactController {
     private ContactService contactService;
 
     @GetMapping("/contact")
-    public ResponseEntity getAllContacts(){
+    @ResponseBody
+    public List<Contact> getAllContacts(){
         return contactService.listContacts();
     }
 
