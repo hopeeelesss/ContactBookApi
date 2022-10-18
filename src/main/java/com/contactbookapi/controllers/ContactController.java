@@ -7,7 +7,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/v1")
@@ -22,15 +24,19 @@ public class ContactController {
     }
 
     @PostMapping("/contact/new")
-    public void newContact(@RequestParam("phone") String phone,
-                           @RequestParam("name") String name,
-                           @RequestParam(value = "surname", required = false) String surname){
+    @ResponseBody
+    public HashMap<String, Integer> newContact(@RequestParam("phone") String phone,
+                                                   @RequestParam("name") String name,
+                                                   @RequestParam(value = "surname", required = false) String surname){
         contactService.addContact(new Contact(phone, name, surname));
+        return contactService.responceOK();
     }
 
     @DeleteMapping("/contact/delete")
-    public void deleteContacts(){
+    @ResponseBody
+    public HashMap<String, Integer> deleteContacts(){
         contactService.deleteAllContacts();
+        return contactService.responceOK();
     }
 
     @GetMapping("/contact/{name}/get")
@@ -39,15 +45,19 @@ public class ContactController {
     }
 
     @DeleteMapping("/contact/{name}/delete")
-    public void deleteContact(@PathVariable("name") String name){
+    @ResponseBody
+    public HashMap<String, Integer> deleteContact(@PathVariable("name") String name){
         contactService.deleteByName(name);
+        return contactService.responceOK();
     }
 
     @PutMapping("/contact/{name}/update")
-    public void updateContact(@PathVariable("name") String oldName,
-                              @RequestParam("phone") String phone,
-                              @RequestParam("newname") String newName,
-                              @RequestParam(value = "surname", required = false) String surname){
+    @ResponseBody
+    public HashMap<String, Integer> updateContact(@PathVariable("name") String oldName,
+                                                  @RequestParam("phone") String phone,
+                                                  @RequestParam("newname") String newName,
+                                                  @RequestParam(value = "surname", required = false) String surname){
         contactService.updateContact(oldName, new Contact(phone, newName, surname));
+        return contactService.responceOK();
     }
 }

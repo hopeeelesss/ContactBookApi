@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -45,5 +46,11 @@ public class ContactService {
     public void updateContact(String oldName, Contact contact){
         contactRepository.deleteByName(oldName);
         contactRepository.save(contact);
+    }
+
+    public HashMap<String, Integer> responceOK(){
+        HashMap<String, Integer> responce = new HashMap<>();
+        responce.put("code",200);
+        return responce;
     }
 }
