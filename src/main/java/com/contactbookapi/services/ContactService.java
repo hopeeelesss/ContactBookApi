@@ -20,10 +20,6 @@ public class ContactService {
     private ContactRepository contactRepository;
 
     public List<Contact> listContacts(){
-//        Map<Long, List<Contact>> data = contactRepository.findAll().stream()
-//                .collect(Collectors.groupingBy(Contact::getId));
-//        MultiValueMap<Long, Contact> list = new LinkedMultiValueMap<>(data);
-//        return new ResponseEntity(list, HttpStatus.OK);
         return contactRepository.findAll();
     }
 
@@ -41,7 +37,9 @@ public class ContactService {
 
     public Contact findByName(String name){return contactRepository.findContactByName(name);}
 
-    public void deleteByName(String name){contactRepository.deleteByName(name);}
+    public void deleteByName(String name){
+        contactRepository.delete(contactRepository.findContactByName(name));
+    }
 
     public void updateContact(String oldName, Contact contact){
         contactRepository.deleteByName(oldName);
