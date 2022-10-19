@@ -27,7 +27,6 @@ public class SwaggerConfig {
         return new ApiInfoBuilder()
                 .title("REST API Контактная книга")
                 .description("ContactBookApi")
-                .termsOfServiceUrl("http://www.baidu.com")
                 .version("1.0")
                 .build();
     }
