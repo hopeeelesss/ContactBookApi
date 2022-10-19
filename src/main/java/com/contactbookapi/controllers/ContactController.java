@@ -2,6 +2,7 @@ package com.contactbookapi.controllers;
 
 import com.contactbookapi.models.Contact;
 import com.contactbookapi.services.ContactService;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -12,6 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
+@Api
 @RequestMapping("/v1")
 public class ContactController {
     @Autowired
